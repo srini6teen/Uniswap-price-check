@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Hex2T",
+    "tokenAddress": "0xEd1199093b1aBd07a368Dd1C0Cdc77D8517BA2A0",
+    "notifyPrice": "4500000"
+  },
+  {
+    "name": "TrustSwap",
+    "tokenAddress": "0xCC4304A31d09258b0029eA7FE63d032f52e44EFe",
+    "notifyPrice": "1035"
+  },
+  {
+    "name": "XIO",
+    "tokenAddress": "0x0f7f961648ae6db43c75663ac7e5414eb79b5704",
+    "notifyPrice": "500"
+  },
+  {
+    "name": "BlockClout",
+    "tokenAddress": "0xa10ae543dB5D967a73E9Abcc69c81a18A7Fc0A78",
+    "notifyPrice": "65000"
+  },
+  {
+    "name": "DGN",
+    "tokenAddress": "0x7461c43bb1e96863233d72a09191008ee9217ee8",
+    "notifyPrice": "65000"
+  },
+  {
+    "name": "GEAR",
+    "tokenAddress": "0x1b980e05943dE3dB3a459C72325338d327B6F5a9",
+    "notifyPrice": "65000"
+  }
+]
