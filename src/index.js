@@ -2,7 +2,7 @@ require("./models/Crypto");
 
 import tokenAddress from "../data/address.json";
 import notificationLimits from "../data/notificationLimits.json";
-import { getTokenPrice } from "./getTokenPrice";
+import { getTokenPriceWithDecimals } from "./getTokenPrice";
 import { sendMessage } from "./sendTelegramMessage";
 import { sendPushNotification } from "./sendExpoNotification";
 import { request } from "http";
@@ -41,14 +41,15 @@ mongoose.connection.on("error", (err) => {
 
 const sendTelegramNotification = async () => {
   let msgText = "";
-  //const sent = await bot.sendMessage("CrytoPriceNotify", "Hi");
-  for (let index in tokenAddress) {
-    const result = await getTokenPrice(tokenAddress[index].tokenAddress);
-    msgText += `${tokenAddress[index].name} : ${result}/ETH + \n`;
 
-    //console.log(msgText);
+  for (let index in tokenAddress) {
+    const result = await getTokenPriceWithDecimals(
+      tokenAddress[index].tokenAddress,
+      tokenAddress[index].decimal
+    );
+
+    msgText += `${tokenAddress[index].name} : ${result}/ETH + \n`;
   }
-  //console.log(msgText);
   sendMessage(msgText);
 };
 

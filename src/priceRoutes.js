@@ -1,5 +1,5 @@
 import tokenAddress from "../data/address.json";
-import { getTokenPrice, getTokenPriceWithDecimals } from "./getTokenPrice";
+import { getTokenPriceWithDecimals } from "./getTokenPrice";
 import { sendPushNotification } from "./sendExpoNotification";
 
 const express = require("express");
@@ -12,12 +12,24 @@ const Crypto = mongoose.model("Crypto");
 
 const getLatestCryptoPrice = async () => {
   let price = [];
+  let promises = new Map();
   for (let index in tokenAddress) {
     const token = tokenAddress[index];
-    const result = await getTokenPriceWithDecimals(token.tokenAddress, token.decimal);
-    price.push({ name: tokenAddress[index].name, price: result });
+    promises.set(
+      token.name,
+      getTokenPriceWithDecimals(token.tokenAddress, token.decimal)
+    );
   }
 
+  for (const [key, value] of promises.entries()) {
+    price.push({
+      name: key,
+      price: await Promise.resolve(value),
+    });
+  }
+
+  //price.push({ name: tokenAddress[index].name, price: result });
+  //console.log(price);
   return price;
 };
 
@@ -34,17 +46,14 @@ const checkTargetPrice = async () => {
   const cryptoPrice = await getLatestCryptoPrice();
   let targetPortfolios = [];
   cryptoPrice.map((x) => {
-    //console.log(x);
-
     const result = Crypto.find({
       "portfolioTarget.name": x.name,
       "portfolioTarget.price": { $gte: x.price, $gt: 0 },
-    }) // "portfolioTarget.price": { $gte: x.price },
+    })
       .collation({ locale: "en", strength: 2 })
       .then((results) => {
         if (results) {
           for (let index in results) {
-            //console.log(results[index]);
             const portfolio = results[index].portfolioTarget;
             for (let i in portfolio) {
               if (
@@ -56,23 +65,8 @@ const checkTargetPrice = async () => {
                 sendPushNotification(results[index].expoToken, x.name, x.price);
               }
             }
-            // if (
-            //   results[index].name.toLocaleUpperCase() ==
-            //     x.name.toLocaleUpperCase() &&
-            //   results[index].price > 0 &&
-            //   x.price >= results[index].price
-            // ) {
-            //   sendPushNotification(results[index].expoToken, x.name, x.price);
-            // }
-
-            //sendPushNotification(results[index].expoToken, x.name, x.price);
-            // targetPortfolios.push({
-            //   expoToken: results[index].expoToken,
-            //   message: `${x.name} : ${x.price}`,
-            // });
           }
         }
-        // if (results != null) console.log(`result is ${results}`);
       });
   });
 };
