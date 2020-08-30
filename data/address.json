@@ -2,43 +2,46 @@
   {
     "name": "Hex2T",
     "tokenAddress": "0xEd1199093b1aBd07a368Dd1C0Cdc77D8517BA2A0",
-    "notifyPrice": "4500000",
     "decimal": 18
   },
   {
     "name": "TrustSwap",
     "tokenAddress": "0xCC4304A31d09258b0029eA7FE63d032f52e44EFe",
-    "notifyPrice": "1035",
     "decimal": 18
   },
   {
     "name": "XIO",
     "tokenAddress": "0x0f7f961648ae6db43c75663ac7e5414eb79b5704",
-    "notifyPrice": "500",
-    "decimal": 18
-  },
-  {
-    "name": "BlockClout",
-    "tokenAddress": "0xa10ae543dB5D967a73E9Abcc69c81a18A7Fc0A78",
-    "notifyPrice": "65000",
-    "decimal": 18
-  },
-  {
-    "name": "DGN",
-    "tokenAddress": "0x7461c43bb1e96863233d72a09191008ee9217ee8",
-    "notifyPrice": "65000",
     "decimal": 18
   },
   {
     "name": "GEAR",
     "tokenAddress": "0x1b980e05943dE3dB3a459C72325338d327B6F5a9",
-    "notifyPrice": "65000",
     "decimal": 18
   },
   {
     "name": "TREND",
     "tokenAddress": "0x0cC0d75340C0658eC370859252f40Ed92620A807",
-    "notifyPrice": "65000",
     "decimal": 9
+  },
+  {
+    "name": "ATIS",
+    "tokenAddress": "0x821144518dfE9e7b44fCF4d0824e15e8390d4637",
+    "decimal": 18
+  },
+  {
+    "name": "CHAIN",
+    "tokenAddress": "0xC4C2614E694cF534D407Ee49F8E44D125E4681c4",
+    "decimal": 18
+  },
+  {
+    "name": "UNILAYER",
+    "tokenAddress": "0x0ff6ffcfda92c53f615a4a75d982f399c989366b",
+    "decimal": 18
+  },
+  {
+    "name": "TDEX",
+    "tokenAddress": "0xc5e19fd321b9bc49b41d9a3a5ad71bcc21cc3c54",
+    "decimal": 18
   }
 ]
