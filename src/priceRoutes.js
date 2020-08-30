@@ -28,8 +28,6 @@ const getLatestCryptoPrice = async () => {
     });
   }
 
-  //price.push({ name: tokenAddress[index].name, price: result });
-  //console.log(price);
   return price;
 };
 
