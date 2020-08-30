@@ -1,5 +1,5 @@
 import tokenAddress from "../data/address.json";
-import { getTokenPrice } from "./getTokenPrice";
+import { getTokenPrice, getTokenPriceWithDecimals } from "./getTokenPrice";
 import { sendPushNotification } from "./sendExpoNotification";
 
 const express = require("express");
@@ -13,7 +13,8 @@ const Crypto = mongoose.model("Crypto");
 const getLatestCryptoPrice = async () => {
   let price = [];
   for (let index in tokenAddress) {
-    const result = await getTokenPrice(tokenAddress[index].tokenAddress);
+    const token = tokenAddress[index];
+    const result = await getTokenPriceWithDecimals(token.tokenAddress, token.decimal);
     price.push({ name: tokenAddress[index].name, price: result });
   }
 
