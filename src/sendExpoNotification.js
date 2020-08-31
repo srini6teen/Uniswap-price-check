@@ -1,6 +1,6 @@
 const https = require("https");
 
-export const sendPushNotification = async (expoPushToken, name, price) => {
+const sendPushNotification = async (expoPushToken, name, price) => {
   console.log("push called");
   const message = {
     to: expoPushToken,
@@ -62,3 +62,7 @@ export const sendPushNotification = async (expoPushToken, name, price) => {
   //     body: JSON.stringify(message),
   //   });
 };
+
+module.exports ={
+  sendPushNotification
+}

@@ -1,17 +1,14 @@
 require("./models/Crypto");
 
-import tokenAddress from "../data/address.json";
-import notificationLimits from "../data/notificationLimits.json";
-import { getTokenPriceWithDecimals } from "./getTokenPrice";
-import { sendMessage } from "./sendTelegramMessage";
-import { sendPushNotification } from "./sendExpoNotification";
-import { request } from "http";
-
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const portfolioRoutes = require("./portfolioRoutes");
 const priceRoutes = require("./priceRoutes");
+const tokenAddress = require("../data/address.json")
+const tokenPrice = require("./getTokenPrice");
+const sendPushNotification = require("./sendExpoNotification");
+const sendTelegramMessage = require("./sendTelegramMessage");
 
 const fs = require("fs");
 
@@ -43,14 +40,14 @@ const sendTelegramNotification = async () => {
   let msgText = "";
 
   for (let index in tokenAddress) {
-    const result = await getTokenPriceWithDecimals(
+    const result = await tokenPrice.getTokenPriceWithDecimals(
       tokenAddress[index].tokenAddress,
       tokenAddress[index].decimal
     );
 
     msgText += `${tokenAddress[index].name} : ${result}/ETH + \n`;
   }
-  sendMessage(msgText);
+  sendTelegramMessage.sendMessage(msgText);
 };
 
 app.get("/", (req, res) => {

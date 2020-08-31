@@ -1,6 +1,7 @@
-import tokenAddress from "../data/address.json";
-import { getTokenPriceWithDecimals } from "./getTokenPrice";
-import { sendPushNotification } from "./sendExpoNotification";
+const tokenPrice = require("./getTokenPrice");
+const sendPushNotification = require("./sendExpoNotification");
+
+const tokenAddress = require("../data/address.json")
 
 const express = require("express");
 
@@ -17,7 +18,7 @@ const getLatestCryptoPrice = async () => {
     const token = tokenAddress[index];
     promises.set(
       token.name,
-      getTokenPriceWithDecimals(token.tokenAddress, token.decimal)
+      tokenPrice.getTokenPriceWithDecimals(token.tokenAddress, token.decimal)
     );
   }
 

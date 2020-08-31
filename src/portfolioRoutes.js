@@ -1,5 +1,4 @@
-import tokenAddress from "../data/address.json";
-
+const tokenAddress = require("../data/address.json")
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -15,8 +14,6 @@ router.get("/portfolioTarget/:expoToken", async (req, res) => {
       expoToken: expoToken,
     });
     for (let index in tokenAddress) {
-      //console.log(tokenAddress[index].name);
-      // console.log(crypto[0].portfolioTarget);
       let flag = false;
       const result = crypto[0].portfolioTarget.filter((x) => {
         {
@@ -41,9 +38,7 @@ router.get("/portfolioTarget/:expoToken", async (req, res) => {
 });
 
 router.post("/savePortfolioTarget", async (req, res) => {
-  //console.log("save called");
   const { expoToken, portfolioTarget } = req.body;
-  //console.log(portfolioTarget);
   try {
     Crypto.findOne({ expoToken: expoToken }, (err, crypto) => {
       if (!crypto) crypto = new Crypto();
