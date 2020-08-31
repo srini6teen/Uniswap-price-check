@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/3f864f39-14d5-4c9a-b9f9-ae812f0fce86/resourceGroups/UniSwap-RG/providers/Microsoft.Web/sites/UniSwap",
+    "appService.deploySubpath": "."
+}
