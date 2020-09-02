@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "",
   "engines": {
-    "node": "10.16.0",
+    "node": "10.16.3",
     "npm": "6.9.0"
   },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -r esm src/index.js",
-    "start": "nodemon -r esm src/index.js"
+    "dev": "nodemon src/index.js",
+    "start": "nodemon src/index.js"
   },
   "author": "",
   "license": "ISC",
