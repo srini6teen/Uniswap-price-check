@@ -56,7 +56,12 @@
   },
   {
     "name": "BIDS",
-    "tokenAddress": "0xa69ffc45f56dcf0d17569a36179ab58596532d1d",
+    "tokenAddress": "0x912B38134F395D1BFAb4C6F9db632C31667ACF98",
     "decimal": 18
+  },
+  {
+    "name": "SYFI",
+    "tokenAddress": "0x88093840AaD42d2621e1a452BF5d7076fF804D61",
+    "decimal": 9
   }
 ]
