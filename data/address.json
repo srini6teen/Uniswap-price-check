@@ -53,5 +53,10 @@
     "name": "SBX",
     "tokenAddress": "0xdaf8a0e12fc3b109a17ed5cbb943a8f3f86081f7",
     "decimal": 18
+  },
+  {
+    "name": "BIDS",
+    "tokenAddress": "0xa69ffc45f56dcf0d17569a36179ab58596532d1d",
+    "decimal": 18
   }
 ]
