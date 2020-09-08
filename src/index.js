@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const portfolioRoutes = require("./portfolioRoutes");
 const priceRoutes = require("./priceRoutes");
-const tokenAddress = require("../data/address.json")
+const tokenAddress = require("../data/address.json");
 const tokenPrice = require("./getTokenPrice");
 const sendPushNotification = require("./sendExpoNotification");
 const sendTelegramMessage = require("./sendTelegramMessage");
@@ -45,7 +45,9 @@ const sendTelegramNotification = async () => {
       tokenAddress[index].decimal
     );
 
-    msgText += `${tokenAddress[index].name} : ${result}/ETH + \n`;
+    if (tokenAddress[index].name == "ETH")
+      msgText += `${tokenAddress[index].name} : USD ${result} + \n`;
+    else msgText += `${tokenAddress[index].name} : ${result}/ETH + \n`;
   }
   sendTelegramMessage.sendMessage(msgText);
 };
