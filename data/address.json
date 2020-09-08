@@ -73,5 +73,10 @@
     "name": "LOCK",
     "tokenAddress": "0xB9464ef80880c5aeA54C7324c0b8Dd6ca6d05A90",
     "decimal": 18
+  },
+  {
+    "name": "USDT",
+    "tokenAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+    "decimal": 18
   }
 ]
