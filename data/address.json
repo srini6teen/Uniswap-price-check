@@ -55,19 +55,9 @@
     "decimal": 18
   },
   {
-    "name": "SBX",
-    "tokenAddress": "0xdaf8a0e12fc3b109a17ed5cbb943a8f3f86081f7",
-    "decimal": 18
-  },
-  {
     "name": "BIDS",
     "tokenAddress": "0x912B38134F395D1BFAb4C6F9db632C31667ACF98",
     "decimal": 18
-  },
-  {
-    "name": "SYFI",
-    "tokenAddress": "0x88093840AaD42d2621e1a452BF5d7076fF804D61",
-    "decimal": 9
   },
   {
     "name": "ALBT",
