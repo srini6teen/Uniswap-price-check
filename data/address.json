@@ -68,5 +68,10 @@
     "name": "LOCK",
     "tokenAddress": "0xB9464ef80880c5aeA54C7324c0b8Dd6ca6d05A90",
     "decimal": 18
+  },
+  {
+    "name": "SYFI",
+    "tokenAddress": "0x322124122DF407b0d0D902cB713B3714FB2e2E1F",
+    "decimal": 9
   }
 ]
