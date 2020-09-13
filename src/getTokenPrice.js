@@ -126,7 +126,7 @@ const getUSDTPairTokenPrice = async (tokenAddress, decimal) => {
       UNISWAP.TradeType.EXACT_INPUT
     );
 
-    console.log(trade.executionPrice.toSignificant(6));
+    return trade.executionPrice.toSignificant(6);
   } catch (err) {
     console.log("exception");
     console.log(err);
