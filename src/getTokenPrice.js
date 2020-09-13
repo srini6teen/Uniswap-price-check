@@ -11,14 +11,43 @@ const getTokens = async () => {
   return Object.keys(tokenDetails).join(", ");
 };
 
-// const getPrice = async (inputTicker, outputTicker) => {
-//   try {
+const getPrice = async (inputTicker, outputTicker) => {
+  try {
+    const fromToken = tokenDetails[inputTicker];
+    const toToken = tokenDetails[outputTicker];
 
-//   } catch (err) {
-//     console.log("exception");
-//     console.log(err);
-//   }
-// };
+    const inputToken = new UNISWAP.Token(
+      UNISWAP.ChainId.MAINNET,
+      fromToken.tokenAddress,
+      fromToken.decimal
+    );
+
+    const outputToken = new UNISWAP.Token(
+      UNISWAP.ChainId.MAINNET,
+      toToken.tokenAddress,
+      toToken.decimal
+    );
+
+    const pair = await UNISWAP.Fetcher.fetchPairData(outputToken, inputToken);
+
+    const route = new UNISWAP.Route([pair], inputToken);
+
+    let decimals = Math.pow(10, fromToken.decimal);
+
+    let tokenAmount = new UNISWAP.TokenAmount(inputToken, decimals);
+
+    const trade = new UNISWAP.Trade(
+      route,
+      tokenAmount,
+      UNISWAP.TradeType.EXACT_INPUT
+    );
+
+    return trade.executionPrice.toSignificant(6);
+  } catch (err) {
+    console.log("exception");
+    console.log(err);
+  }
+};
 
 const getPriceDataForToken = async (tokenTicker) => {
   let msgText = "";
@@ -54,6 +83,8 @@ const getPriceData = async () => {
 
   for (let index in tokenAddress) {
     let result = "";
+
+    if (tokenAddress[index].ticker.toUpperCase() == "WETH") continue;
 
     if (tokenAddress[index].ticker.toLocaleUpperCase() == "HGET")
       result = await getUSDTPairTokenPrice(
@@ -148,4 +179,5 @@ module.exports = {
   getPriceDataForToken,
   getTokens,
   getUSDTPairTokenPrice,
+  getPrice,
 };

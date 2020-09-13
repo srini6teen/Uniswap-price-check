@@ -30,13 +30,19 @@ const sendMessageToDiscord = (message) => {
 };
 
 const getPriceDetails = async (priceCommand) => {
+  priceCommand = priceCommand.trim();
   var commandArray = priceCommand.split(" ");
   var price;
   if (commandArray.length == 1) {
     price = await tokenPrice.getPriceData();
-  } else {
+  } else if (commandArray.length == 2) {
     price = await tokenPrice.getPriceDataForToken(
       commandArray[1].toUpperCase()
+    );
+  } else if (commandArray.length == 3) {
+    price = await tokenPrice.getPrice(
+      commandArray[1].toUpperCase(),
+      commandArray[2].toUpperCase()
     );
   }
   sendMessageToDiscord(price);

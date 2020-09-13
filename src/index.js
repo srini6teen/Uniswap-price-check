@@ -45,8 +45,17 @@ const sendTelegramNotification = async () => {
 };
 
 app.get("/", (req, res) => {
-  sendTelegramNotification();
+  //sendTelegramNotification();
   res.status(200).send("success");
+});
+
+app.get("/pair/:fromTicker/:toTicker", async (req, res) => {
+  let result = "";
+  result = await tokenPrice.getPrice(
+    req.params.fromTicker,
+    req.params.toTicker
+  );
+  res.status(200).send(result);
 });
 
 app.post("/saveNotificationLimit", async (req, res) => {
