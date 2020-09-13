@@ -1,8 +1,0 @@
-discord:
-  useNickname: false
-  token: xxxxxxxxxx
-  skipOldMessages: true
-  displayTelegramReplies: embed
-  replyLength: 100
-  maxReplyLines: 2
-  channelId: "753031850162651188"
