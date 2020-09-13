@@ -18,8 +18,8 @@ const getPriceDataForToken = async (tokenTicker) => {
 
   if (tokenTicker.toLocaleUpperCase() == "HGET")
     result = await getUSDTPairTokenPrice(
-      tokenAddress[index].tokenAddress,
-      tokenAddress[index].decimal
+      tokenDetail.tokenAddress,
+      tokenDetail.decimal
     );
   else
     result = await getTokenPriceWithDecimals(
@@ -30,8 +30,8 @@ const getPriceDataForToken = async (tokenTicker) => {
   if (tokenTicker == "ETH") {
     msgText += `${tokenTicker} : USD ${result}`;
     msgText += "\n";
-  } else if (tokenAddress[index].ticker.toLocaleUpperCase == "HGET") {
-    msgText += `${tokenAddress[index].ticker} : ${result}/USDT`;
+  } else if (tokenTicker.toLocaleUpperCase() == "HGET") {
+    msgText += `${tokenTicker} : ${result}/USDT`;
     msgText += "\n";
   } else {
     msgText += `${tokenTicker} : ${result}/ETH`;
@@ -60,7 +60,7 @@ const getPriceData = async () => {
     if (tokenAddress[index].ticker == "ETH") {
       msgText += `${tokenAddress[index].ticker} : USD ${result}`;
       msgText += "\n";
-    } else if (tokenAddress[index].ticker.toLocaleUpperCase == "HGET") {
+    } else if (tokenAddress[index].ticker.toLocaleUpperCase() == "HGET") {
       msgText += `${tokenAddress[index].ticker} : ${result}/USDT`;
       msgText += "\n";
     } else {
