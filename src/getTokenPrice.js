@@ -8,8 +8,8 @@ for (let token in tokenAddress) {
 }
 
 const getTokens = async () => {
-  return Object.keys(tokenDetails).join(', ');
-}
+  return Object.keys(tokenDetails).join(", ");
+};
 
 const getPriceDataForToken = async (tokenTicker) => {
   let msgText = "";
@@ -21,15 +21,13 @@ const getPriceDataForToken = async (tokenTicker) => {
 
   if (tokenTicker == "ETH") {
     msgText += `${tokenTicker} : USD ${result}`;
-    msgText += '\n'
+    msgText += "\n";
   } else {
     msgText += `${tokenTicker} : ${result}/ETH`;
-    msgText += '\n'
+    msgText += "\n";
   }
-  getPair();
   return msgText;
-}
-
+};
 
 const getPriceData = async () => {
   let msgText = "";
@@ -42,14 +40,14 @@ const getPriceData = async () => {
 
     if (tokenAddress[index].name == "ETH") {
       msgText += `${tokenAddress[index].name} : USD ${result}`;
-      msgText += '\n'
+      msgText += "\n";
     } else {
       msgText += `${tokenAddress[index].name} : ${result}/ETH`;
-      msgText += '\n'
+      msgText += "\n";
     }
   }
   return msgText;
-}
+};
 
 const getTokenPriceWithDecimals = async (tokenAddress, decimal) => {
   try {
@@ -85,5 +83,5 @@ module.exports = {
   getTokenPriceWithDecimals,
   getPriceData,
   getPriceDataForToken,
-  getTokens
+  getTokens,
 };
