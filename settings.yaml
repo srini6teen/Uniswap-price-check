@@ -1,8 +1,0 @@
-discord:
-  useNickname: false
-  token: NzU0NDU2NzE2MjY3MjI1MTU4.X11Akg.p3MfvUrrzMe4FNtT9837xpo2-FA
-  skipOldMessages: true
-  displayTelegramReplies: embed
-  replyLength: 100
-  maxReplyLines: 2
-  channelId: "753031850162651188"
