@@ -1,6 +1,6 @@
 discord:
   useNickname: false
-  token: NzU0NDU2NzE2MjY3MjI1MTU4.X11Akg.VvvjHIq2iMutOh1bBEvrCg_iiVY
+  token: xxxxxxxxxx
   skipOldMessages: true
   displayTelegramReplies: embed
   replyLength: 100
