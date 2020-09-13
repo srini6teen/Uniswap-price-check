@@ -11,6 +11,15 @@ const getTokens = async () => {
   return Object.keys(tokenDetails).join(", ");
 };
 
+// const getPrice = async (inputTicker, outputTicker) => {
+//   try {
+
+//   } catch (err) {
+//     console.log("exception");
+//     console.log(err);
+//   }
+// };
+
 const getPriceDataForToken = async (tokenTicker) => {
   let msgText = "";
   let result = "";
