@@ -13,14 +13,25 @@ const getTokens = async () => {
 
 const getPriceDataForToken = async (tokenTicker) => {
   let msgText = "";
+  let result = "";
   const tokenDetail = tokenDetails[tokenTicker];
-  const result = await getTokenPriceWithDecimals(
-    tokenDetail.tokenAddress,
-    tokenDetail.decimal
-  );
+
+  if (tokenTicker.toLocaleUpperCase() == "HGET")
+    result = await getUSDTPairTokenPrice(
+      tokenAddress[index].tokenAddress,
+      tokenAddress[index].decimal
+    );
+  else
+    result = await getTokenPriceWithDecimals(
+      tokenDetail.tokenAddress,
+      tokenDetail.decimal
+    );
 
   if (tokenTicker == "ETH") {
     msgText += `${tokenTicker} : USD ${result}`;
+    msgText += "\n";
+  } else if (tokenAddress[index].ticker.toLocaleUpperCase == "HGET") {
+    msgText += `${tokenAddress[index].ticker} : ${result}/USDT`;
     msgText += "\n";
   } else {
     msgText += `${tokenTicker} : ${result}/ETH`;
@@ -33,16 +44,27 @@ const getPriceData = async () => {
   let msgText = "";
 
   for (let index in tokenAddress) {
-    const result = await getTokenPriceWithDecimals(
-      tokenAddress[index].tokenAddress,
-      tokenAddress[index].decimal
-    );
+    let result = "";
 
-    if (tokenAddress[index].name == "ETH") {
-      msgText += `${tokenAddress[index].name} : USD ${result}`;
+    if (tokenAddress[index].ticker.toLocaleUpperCase() == "HGET")
+      result = await getUSDTPairTokenPrice(
+        tokenAddress[index].tokenAddress,
+        tokenAddress[index].decimal
+      );
+    else
+      result = await getTokenPriceWithDecimals(
+        tokenAddress[index].tokenAddress,
+        tokenAddress[index].decimal
+      );
+
+    if (tokenAddress[index].ticker == "ETH") {
+      msgText += `${tokenAddress[index].ticker} : USD ${result}`;
+      msgText += "\n";
+    } else if (tokenAddress[index].ticker.toLocaleUpperCase == "HGET") {
+      msgText += `${tokenAddress[index].ticker} : ${result}/USDT`;
       msgText += "\n";
     } else {
-      msgText += `${tokenAddress[index].name} : ${result}/ETH`;
+      msgText += `${tokenAddress[index].ticker} : ${result}/ETH`;
       msgText += "\n";
     }
   }
@@ -79,9 +101,42 @@ const getTokenPriceWithDecimals = async (tokenAddress, decimal) => {
   }
 };
 
+const getUSDTPairTokenPrice = async (tokenAddress, decimal) => {
+  try {
+    const USDT = new UNISWAP.Token(
+      UNISWAP.ChainId.MAINNET,
+      "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      6
+    );
+    const HGET = new UNISWAP.Token(
+      UNISWAP.ChainId.MAINNET,
+      tokenAddress,
+      decimal
+    );
+
+    const USDTHGETPair = await UNISWAP.Fetcher.fetchPairData(USDT, HGET);
+
+    const route = new UNISWAP.Route([USDTHGETPair], USDT);
+
+    let tokenAmount = new UNISWAP.TokenAmount(USDT, "1000000");
+
+    const trade = new UNISWAP.Trade(
+      route,
+      tokenAmount,
+      UNISWAP.TradeType.EXACT_INPUT
+    );
+
+    console.log(trade.executionPrice.toSignificant(6));
+  } catch (err) {
+    console.log("exception");
+    console.log(err);
+  }
+};
+
 module.exports = {
   getTokenPriceWithDecimals,
   getPriceData,
   getPriceDataForToken,
   getTokens,
+  getUSDTPairTokenPrice,
 };
