@@ -16,8 +16,10 @@
   "license": "ISC",
   "dependencies": {
     "@uniswap/sdk": "^3.0.2",
+    "discord.js": "^12.3.1",
     "esm": "^3.2.25",
     "express": "^4.17.1",
+    "js-yaml": "^3.14.0",
     "mongoose": "^5.9.23",
     "node-telegram-bot-api": "^0.50.0",
     "nodemon": "^2.0.4"

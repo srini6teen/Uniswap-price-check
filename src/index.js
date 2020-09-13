@@ -5,12 +5,14 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const portfolioRoutes = require("./portfolioRoutes");
 const priceRoutes = require("./priceRoutes");
-const tokenAddress = require("../data/address.json");
+
 const tokenPrice = require("./getTokenPrice");
 const sendPushNotification = require("./sendExpoNotification");
 const sendTelegramMessage = require("./sendTelegramMessage");
+const sendDiscordMessage = require("./sendDiscordMessage");
 
 const fs = require("fs");
+const e = require("express");
 
 const app = express();
 
@@ -37,19 +39,9 @@ mongoose.connection.on("error", (err) => {
 });
 
 const sendTelegramNotification = async () => {
-  let msgText = "";
-
-  for (let index in tokenAddress) {
-    const result = await tokenPrice.getTokenPriceWithDecimals(
-      tokenAddress[index].tokenAddress,
-      tokenAddress[index].decimal
-    );
-
-    if (tokenAddress[index].name == "ETH")
-      msgText += `${tokenAddress[index].name} : USD ${result} + \n`;
-    else msgText += `${tokenAddress[index].name} : ${result}/ETH + \n`;
-  }
-  sendTelegramMessage.sendMessage(msgText);
+  const priceDataMessage = await tokenPrice.getPriceData();
+  sendTelegramMessage.sendMessage(priceDataMessage);
+  sendDiscordMessage.sendMessageToDiscord(priceDataMessage);
 };
 
 app.get("/", (req, res) => {
