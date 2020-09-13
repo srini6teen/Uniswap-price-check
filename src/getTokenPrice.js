@@ -42,7 +42,11 @@ const getPrice = async (inputTicker, outputTicker) => {
       UNISWAP.TradeType.EXACT_INPUT
     );
 
-    return trade.executionPrice.toSignificant(6);
+    const result = trade.executionPrice.toSignificant(6);
+
+    const msg = `${toToken.name} : ${result}/${fromToken.name}`;
+
+    return msg;
   } catch (err) {
     console.log("exception");
     console.log(err);
@@ -66,13 +70,13 @@ const getPriceDataForToken = async (tokenTicker) => {
     );
 
   if (tokenTicker == "ETH") {
-    msgText += `${tokenTicker} : USD ${result}`;
+    msgText += `${tokenDetail.name} : USD ${result}`;
     msgText += "\n";
   } else if (tokenTicker.toLocaleUpperCase() == "HGET") {
-    msgText += `${tokenTicker} : ${result}/USDT`;
+    msgText += `${tokenDetail.name} : ${result}/USDT`;
     msgText += "\n";
   } else {
-    msgText += `${tokenTicker} : ${result}/ETH`;
+    msgText += `${tokenDetail.name} : ${result}/ETH`;
     msgText += "\n";
   }
   return msgText;
@@ -98,13 +102,13 @@ const getPriceData = async () => {
       );
 
     if (tokenAddress[index].ticker == "ETH") {
-      msgText += `${tokenAddress[index].ticker} : USD ${result}`;
+      msgText += `${tokenAddress[index].name} : USD ${result}`;
       msgText += "\n";
     } else if (tokenAddress[index].ticker.toLocaleUpperCase() == "HGET") {
-      msgText += `${tokenAddress[index].ticker} : ${result}/USDT`;
+      msgText += `${tokenAddress[index].name} : ${result}/USDT`;
       msgText += "\n";
     } else {
-      msgText += `${tokenAddress[index].ticker} : ${result}/ETH`;
+      msgText += `${tokenAddress[index].name} : ${result}/ETH`;
       msgText += "\n";
     }
   }
