@@ -1,8 +1,8 @@
 discord:
-    useNickname: false
-    token: NzU0NDU2NzE2MjY3MjI1MTU4.X11Akg.rvbUKXKzEdtpr91MCkjGcXWb3mY
-    skipOldMessages: true
-    displayTelegramReplies: embed
-    replyLength: 100
-    maxReplyLines: 2
-    channelId: '753031850162651188'
+  useNickname: false
+  token: NzU0NDU2NzE2MjY3MjI1MTU4.X11Akg.VvvjHIq2iMutOh1bBEvrCg_iiVY
+  skipOldMessages: true
+  displayTelegramReplies: embed
+  replyLength: 100
+  maxReplyLines: 2
+  channelId: "753031850162651188"
