@@ -5,7 +5,7 @@ const tokenPrice = require("./getTokenPrice");
 const jsYaml = require("js-yaml");
 const e = require("express");
 
-const settings = jsYaml.safeLoad(fs.readFileSync("../settings.yaml"));
+const settings = jsYaml.safeLoad(fs.readFileSync("settings.yaml"));
 const discordSettings = settings.discord;
 client.login(discordSettings.token);
 
@@ -36,9 +36,19 @@ const getPriceDetails = async (priceCommand) => {
   if (commandArray.length == 1) {
     price = await tokenPrice.getPriceData();
   } else if (commandArray.length == 2) {
-    price = await tokenPrice.getPriceDataForToken(
-      commandArray[1].toUpperCase()
-    );
+    var token = commandArray[1].toUpperCase();
+    // Hack for asking price of ETH
+    if (token == 'ETH') {
+      price = await tokenPrice.getPrice(
+        'ETH',
+        'USDT'
+      );
+    } else {
+      price = await tokenPrice.getPrice(
+        'ETH',
+        commandArray[1].toUpperCase()
+      );
+    }
   } else if (commandArray.length == 3) {
     price = await tokenPrice.getPrice(
       commandArray[1].toUpperCase(),

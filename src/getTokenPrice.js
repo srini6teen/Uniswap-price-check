@@ -53,42 +53,13 @@ const getPrice = async (inputTicker, outputTicker) => {
   }
 };
 
-const getPriceDataForToken = async (tokenTicker) => {
-  let msgText = "";
-  let result = "";
-  const tokenDetail = tokenDetails[tokenTicker];
-
-  if (tokenTicker.toLocaleUpperCase() == "HGET")
-    result = await getUSDTPairTokenPrice(
-      tokenDetail.tokenAddress,
-      tokenDetail.decimal
-    );
-  else
-    result = await getTokenPriceWithDecimals(
-      tokenDetail.tokenAddress,
-      tokenDetail.decimal
-    );
-
-  if (tokenTicker == "ETH") {
-    msgText += `${tokenDetail.name} : USD ${result}`;
-    msgText += "\n";
-  } else if (tokenTicker.toLocaleUpperCase() == "HGET") {
-    msgText += `${tokenDetail.name} : ${result}/USDT`;
-    msgText += "\n";
-  } else {
-    msgText += `${tokenDetail.name} : ${result}/ETH`;
-    msgText += "\n";
-  }
-  return msgText;
-};
-
 const getPriceData = async () => {
   let msgText = "";
 
   for (let index in tokenAddress) {
     let result = "";
 
-    if (tokenAddress[index].ticker.toUpperCase() == "WETH") continue;
+    if (tokenAddress[index].ticker.toUpperCase() == "ETH") continue;
 
     if (tokenAddress[index].ticker.toLocaleUpperCase() == "HGET")
       result = await getUSDTPairTokenPrice(
@@ -101,7 +72,7 @@ const getPriceData = async () => {
         tokenAddress[index].decimal
       );
 
-    if (tokenAddress[index].ticker == "ETH") {
+    if (tokenAddress[index].ticker == "USDT") {
       msgText += `${tokenAddress[index].name} : USD ${result}`;
       msgText += "\n";
     } else if (tokenAddress[index].ticker.toLocaleUpperCase() == "HGET") {
@@ -180,7 +151,6 @@ const getUSDTPairTokenPrice = async (tokenAddress, decimal) => {
 module.exports = {
   getTokenPriceWithDecimals,
   getPriceData,
-  getPriceDataForToken,
   getTokens,
   getUSDTPairTokenPrice,
   getPrice,

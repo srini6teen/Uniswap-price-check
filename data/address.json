@@ -3,108 +3,126 @@
     "name": "ETH",
     "ticker": "USDT",
     "tokenAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
-    "decimal": 6
+    "decimal": 6,
+    "priceFetch": false
   },
   {
     "name": "Hex2T",
     "ticker": "HEX2T",
     "tokenAddress": "0xEd1199093b1aBd07a368Dd1C0Cdc77D8517BA2A0",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   },
   {
     "name": "TrustSwap",
     "ticker": "SWAP",
     "tokenAddress": "0xCC4304A31d09258b0029eA7FE63d032f52e44EFe",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   },
   {
     "name": "XIO",
     "ticker": "XIO",
     "tokenAddress": "0x0f7f961648ae6db43c75663ac7e5414eb79b5704",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   },
   {
     "name": "GEAR",
     "ticker": "GEAR",
     "tokenAddress": "0x1b980e05943dE3dB3a459C72325338d327B6F5a9",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   },
   {
     "name": "TREND",
     "ticker": "TREND",
     "tokenAddress": "0x0cC0d75340C0658eC370859252f40Ed92620A807",
-    "decimal": 9
+    "decimal": 9,
+    "priceFetch": true
   },
   {
     "name": "ATIS",
     "ticker": "ATIS",
     "tokenAddress": "0x821144518dfE9e7b44fCF4d0824e15e8390d4637",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   },
   {
     "name": "CHAIN",
     "ticker": "CHAIN",
     "tokenAddress": "0xC4C2614E694cF534D407Ee49F8E44D125E4681c4",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   },
   {
     "name": "UNILAYER",
     "ticker": "LAYER",
     "tokenAddress": "0x0ff6ffcfda92c53f615a4a75d982f399c989366b",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   },
   {
     "name": "TDEX",
     "ticker": "TDEX",
     "tokenAddress": "0xc5e19fd321b9bc49b41d9a3a5ad71bcc21cc3c54",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   },
   {
     "name": "VIDYA",
     "ticker": "VIDYA",
     "tokenAddress": "0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   },
   {
     "name": "BIDS",
     "ticker": "BIDS",
     "tokenAddress": "0x912B38134F395D1BFAb4C6F9db632C31667ACF98",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   },
   {
     "name": "ALBT",
     "ticker": "ALBT",
     "tokenAddress": "0x00a8b738E453fFd858a7edf03bcCfe20412f0Eb0",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   },
   {
     "name": "LOCK",
     "ticker": "LOCK",
     "tokenAddress": "0xB9464ef80880c5aeA54C7324c0b8Dd6ca6d05A90",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   },
   {
     "name": "SYFI",
     "ticker": "SYFI",
     "tokenAddress": "0x322124122DF407b0d0D902cB713B3714FB2e2E1F",
-    "decimal": 9
+    "decimal": 9,
+    "priceFetch": true
   },
   {
     "name": "SBX",
     "ticker": "SBX",
     "tokenAddress": "0xDaF8a0E12fc3b109A17ED5CbB943A8f3f86081f7",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   },
   {
     "name": "HGET",
     "ticker": "HGET",
     "tokenAddress": "0x7968bc6a03017ea2de509aaa816f163db0f35148",
-    "decimal": 6
+    "decimal": 6,
+    "priceFetch": true
   },
   {
     "name": "WETH",
     "ticker": "ETH",
     "tokenAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
-    "decimal": 18
+    "decimal": 18,
+    "priceFetch": true
   }
 ]
