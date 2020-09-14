@@ -44,8 +44,8 @@ const getPrice = async (inputTicker, outputTicker) => {
 
     const result = trade.executionPrice.toSignificant(6);
 
-    const msg;
-    if (inputTicker == 'ETH' && outputTicker == 'USDT') {
+    var msg;
+    if (inputTicker == "ETH" && outputTicker == "USDT") {
       msg = `ETH : USD ${result}`;
     } else {
       msg = `${toToken.ticker} : ${result}/${fromToken.ticker}`;
@@ -66,7 +66,7 @@ const getPriceData = async () => {
     if (tokenAddress[index].ticker.toUpperCase() == "ETH") continue;
 
     if (tokenAddress[index].ticker.toLocaleUpperCase() == "HGET")
-      result = await getPrice(tokenAddress[index].ticker,"USDT");
+      result = await getPrice(tokenAddress[index].ticker, "USDT");
     else
       result = await getTokenPriceWithDecimals(
         tokenAddress[index].tokenAddress,
