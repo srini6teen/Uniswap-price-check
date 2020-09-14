@@ -65,60 +65,17 @@ const getPriceData = async () => {
 
     if (tokenAddress[index].ticker.toUpperCase() == "ETH") continue;
 
-    if (tokenAddress[index].ticker.toLocaleUpperCase() == "HGET")
+    if (tokenAddress[index].ticker.toLocaleUpperCase() == "HGET") {
       result = await getPrice(tokenAddress[index].ticker, "USDT");
-    else
-      result = await getTokenPriceWithDecimals(
-        tokenAddress[index].tokenAddress,
-        tokenAddress[index].decimal
-      );
-
-    if (tokenAddress[index].ticker == "USDT") {
-      msgText += `${tokenAddress[index].name} : USD ${result}`;
-      msgText += "\n";
-    } else if (tokenAddress[index].ticker.toLocaleUpperCase() == "HGET") {
-      msgText += `${tokenAddress[index].name} : ${result}/USDT`;
-      msgText += "\n";
     } else {
-      msgText += `${tokenAddress[index].name} : ${result}/ETH`;
-      msgText += "\n";
+      result = await getPrice("ETH", tokenAddress[index].ticker);
     }
+    msgText += result + "\n";
   }
   return msgText;
 };
 
-const getTokenPriceWithDecimals = async (tokenAddress, decimal) => {
-  try {
-    const outputToken = new UNISWAP.Token(
-      UNISWAP.ChainId.MAINNET,
-      tokenAddress,
-      decimal
-    );
-    const pair = await UNISWAP.Fetcher.fetchPairData(
-      outputToken,
-      UNISWAP.WETH[outputToken.chainId]
-    );
-    const route = new UNISWAP.Route([pair], UNISWAP.WETH[outputToken.chainId]);
-    let tokenAmount = new UNISWAP.TokenAmount(
-      UNISWAP.WETH[outputToken.chainId],
-      "1000000000000000000"
-    );
-
-    const trade = new UNISWAP.Trade(
-      route,
-      tokenAmount,
-      UNISWAP.TradeType.EXACT_INPUT
-    );
-
-    return trade.executionPrice.toSignificant(6);
-  } catch (err) {
-    console.log("exception");
-    console.log(err);
-  }
-};
-
 module.exports = {
-  getTokenPriceWithDecimals,
   getPriceData,
   getTokens,
   getPrice,
