@@ -24,6 +24,7 @@ client.on("message", async (msg) => {
 });
 
 const sendMessageToDiscord = (message) => {
+  message += "--------------------------------";
   client.channels.cache
     .find((channel) => channel.id === discordSettings.channelId)
     .send(message);
