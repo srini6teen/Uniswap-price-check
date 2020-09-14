@@ -44,8 +44,12 @@ const getPrice = async (inputTicker, outputTicker) => {
 
     const result = trade.executionPrice.toSignificant(6);
 
-    const msg = `${toToken.name} : ${result}/${fromToken.name}`;
-
+    const msg;
+    if (inputTicker == 'ETH' && outputTicker == 'USDT') {
+      msg = `ETH : USD ${result}`;
+    } else {
+      msg = `${toToken.name} : ${result}/${fromToken.name}`;
+    }
     return msg;
   } catch (err) {
     console.log("exception");
