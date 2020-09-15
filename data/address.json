@@ -119,6 +119,20 @@
     "priceFetch": true
   },
   {
+    "name": "XFYI",
+    "ticker": "XFYI",
+    "tokenAddress": "0x6bE7e93e45740C314C89A3bE52473A0dDF2450fe",
+    "decimal": 18,
+    "priceFetch": true
+  },
+  {
+    "name": "YYF",
+    "ticker": "YYF",
+    "tokenAddress": "0x010194bA9CA34AC26B097a5F204dfB47B21288Ea",
+    "decimal": 18,
+    "priceFetch": true
+  },
+  {
     "name": "WETH",
     "ticker": "ETH",
     "tokenAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
