@@ -4,7 +4,7 @@ const { WETH } = require("@uniswap/sdk");
 
 const tokenDetails = {};
 for (let token in tokenAddress) {
-  tokenDetails[tokenAddress[token].ticker] = tokenAddress[token];
+  tokenDetails[tokenAddress[token].ticker.toUpperCase()] = tokenAddress[token];
 }
 
 const getTokens = async () => {
