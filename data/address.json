@@ -152,12 +152,5 @@
     "tokenAddress": "0xECbF566944250ddE88322581024E611419715f7A",
     "decimal": 9,
     "priceFetch": true
-  },
-  {
-    "name": "HERO",
-    "ticker": "HERO",
-    "tokenAddress": "0xb9a1eccd8324d586b2d95b95ac75ea8e6e72154e",
-    "decimal": 18,
-    "priceFetch": true
   }
 ]
