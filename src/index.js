@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const portfolioRoutes = require("./portfolioRoutes");
 const priceRoutes = require("./priceRoutes");
+const graph = require("./graphPriceFetcher");
 
 const tokenPrice = require("./getTokenPrice");
 const sendPushNotification = require("./sendExpoNotification");
@@ -64,6 +65,13 @@ app.post("/saveNotificationLimit", async (req, res) => {
 
   const { expoToken, notifyCrypro } = req.body;
   sendPushNotification(expoToken);
+});
+
+app.get("/graphQL", (req, res) => {
+  graph.getPriceFromGraph().then((data) => {
+    console.log("RESULT:::" + data);
+    res.status(200).send(data);
+  });
 });
 
 app.listen(port, () => {
