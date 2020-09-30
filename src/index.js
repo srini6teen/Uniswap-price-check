@@ -68,9 +68,16 @@ app.post("/saveNotificationLimit", async (req, res) => {
 });
 
 app.get("/graphQL", (req, res) => {
-  graph.getPriceFromGraph().then((data) => {
-    console.log("RESULT:::" + data);
-    res.status(200).send(data);
+  return graph.getPriceFromGraph().then((data) => {
+    let result =
+      `1hr Max Price : ${1 / data.maxDerivedETH}/ETH $Value : ${
+        data.maxDerivedETH * data.maxETHPrice
+      } ; ` + "\n";
+    result +=
+      `1hr Min Price : ${1 / data.minDerivedETH}/ETH $Value : ${
+        data.minDerivedETH * data.minETHPrice
+      } ; ` + "\n";
+    return res.status(200).send(result);
   });
 });
 

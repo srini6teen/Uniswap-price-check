@@ -8,9 +8,14 @@ const UNISWAP_V2_URL =
 var ethPrices = [];
 var derivedETH = [];
 
+let minDerivedETH = 0;
+let maxDerivedETH = 0;
+let minETHPrice = 0;
+let maxETHPrice = 0;
+
 const getPriceFromGraph = async () => {
   var today = Math.floor(Date.now() / 1000);
-  var yesterday = today - 24 * 60 * 60;
+  var yesterday = today - 1 * 60 * 60;
 
   let BLOCKS_VARIABLES = {
     timestampFrom: yesterday,
@@ -22,28 +27,36 @@ const getPriceFromGraph = async () => {
 
   let endBlock = 0;
 
-  request(BLOCKS_URL, QUERIES.getBlocksQuery(), BLOCKS_VARIABLES).then(
-    async (data) => {
+  return request(BLOCKS_URL, QUERIES.getBlocksQuery(), BLOCKS_VARIABLES)
+    .then(async (data) => {
       endBlock = data.blocks[0].number;
-      console.log(endBlock);
+
       let i = 0;
       BLOCKS_VARIABLES.orderDirection = "asc";
-      BLOCKS_VARIABLES.first = 1000;
+      BLOCKS_VARIABLES.first = 100;
 
       while (i < endBlock) {
         try {
-          let count = await getAsyncPrice(BLOCKS_VARIABLES);
-          console.log(count);
-          BLOCKS_VARIABLES.skipCount = count;
+          result = await getAsyncPrice(BLOCKS_VARIABLES);
+          i = result.i;
+          BLOCKS_VARIABLES.skipCount += result.skipCount;
         } catch (e) {
           console.log(e);
         }
       }
-    }
-  );
+    })
+    .then(() => {
+      return {
+        minDerivedETH: minDerivedETH,
+        maxDerivedETH: maxDerivedETH,
+        minETHPrice: minETHPrice,
+        maxETHPrice: maxETHPrice,
+      };
+    });
 };
 
 const getAsyncPrice = async (BLOCKS_VARIABLES) => {
+  let i = 0;
   try {
     return request(BLOCKS_URL, QUERIES.getBlocksQuery(), BLOCKS_VARIABLES).then(
       (data) => {
@@ -54,22 +67,28 @@ const getAsyncPrice = async (BLOCKS_VARIABLES) => {
             data.blocks
           )
         ).then((blocksResponse) => {
-          let count = data.blocks.length();
-          i = data.blocks[count - 1].number;
-
           var jsonObject = JSON.parse(JSON.stringify(blocksResponse));
           var response = new Map(Object.entries(jsonObject));
 
           for (const [key, value] of response.entries()) {
             if (value.derivedETH) {
-              derivedETH.push(value.derivedETH);
-            } else if (value.ethPrice) {
-              ethPrices.push(value.ethPrice);
+              if (minDerivedETH == 0 || value.derivedETH < minDerivedETH) {
+                minDerivedETH = value.derivedETH;
+                let minKey = key.replace("t", "b");
+                minETHPrice = response.get(minKey).ethPrice;
+              }
+              if (value.derivedETH > maxDerivedETH) {
+                maxDerivedETH = value.derivedETH;
+                let maxKey = key.replace("t", "b");
+                maxETHPrice = response.get(maxKey).ethPrice;
+              }
             }
           }
-        });
 
-        return count;
+          let count = data.blocks.length;
+          i = data.blocks[count - 1].number;
+          return { skipCount: count, i: i };
+        });
       }
     );
   } catch (e) {

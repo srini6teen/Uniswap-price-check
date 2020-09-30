@@ -47,7 +47,7 @@ const pricesByTokenAddressAndBlockQuery = (tokenAddress, blocks) => {
   );
 
   queryString += "}";
-  console.log("Query String:: " + queryString);
+  //console.log("Query String:: " + queryString);
   return queryString;
 };
 
