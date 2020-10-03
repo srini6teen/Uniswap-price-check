@@ -4,8 +4,10 @@ const fs = require("fs");
 const tokenPrice = require("./getTokenPrice");
 const jsYaml = require("js-yaml");
 const e = require("express");
+const path = require("path");
 
-const settings = jsYaml.safeLoad(fs.readFileSync("../settings.yaml"));
+const file = fs.readFileSync(path.resolve(__dirname, "../settings.yaml"));
+const settings = jsYaml.safeLoad(file);
 const discordSettings = settings.discord;
 client.login(discordSettings.token);
 
