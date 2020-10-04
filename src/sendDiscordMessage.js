@@ -5,6 +5,7 @@ const tokenPrice = require("./getTokenPrice");
 const jsYaml = require("js-yaml");
 const e = require("express");
 const path = require("path");
+const { getPriceFromGraph } = require("./graphPriceFetcher");
 
 const file = fs.readFileSync(path.resolve(__dirname, "../settings.yaml"));
 const settings = jsYaml.safeLoad(file);
@@ -27,6 +28,7 @@ client.on("message", async (msg) => {
 
 const sendMessageToDiscord = (message) => {
   message += "--------------------------------";
+  message = "```" + message + "```";
   client.channels.cache
     .find((channel) => channel.id === discordSettings.channelId)
     .send(message);
@@ -46,6 +48,20 @@ const getPriceDetails = async (priceCommand) => {
     } else {
       price = await tokenPrice.getPrice("ETH", commandArray[1].toUpperCase());
     }
+
+    let result = "";
+    await getPriceFromGraph(token).then((data) => {
+      result = `1hr Max Price : ${1 / data.maxDerivedETH}/ETH` + "\n";
+      result +=
+        `1hr Max USD Price : USD ${data.maxDerivedETH * data.maxETHPrice}` +
+        "\n";
+
+      result += `1hr Min Price : ${1 / data.minDerivedETH}/ETH` + "\n";
+      result +=
+        `1hr Min USD Price : USD ${data.minDerivedETH * data.minETHPrice}` +
+        "\n";
+    });
+    price += "\n" + result;
   } else if (commandArray.length == 3) {
     price = await tokenPrice.getPrice(
       commandArray[1].toUpperCase(),
