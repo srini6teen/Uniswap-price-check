@@ -51,15 +51,38 @@ const getPriceDetails = async (priceCommand) => {
 
     let result = "";
     await getPriceFromGraph(token).then((data) => {
-      result = `1hr Max Price : ${1 / data.maxDerivedETH}/ETH` + "\n";
-      result +=
-        `1hr Max USD Price : USD ${data.maxDerivedETH * data.maxETHPrice}` +
-        "\n";
+      // if (token == "ETH") {
+      //   result = `${token} : USD ${data.currentTokenPrice}` + "\n";
+      // } else {
+      //   result = `${token} : ${1 / data.currentTokenPrice}/ETH` + "\n";
+      // }
 
-      result += `1hr Min Price : ${1 / data.minDerivedETH}/ETH` + "\n";
+      if (token != "ETH") {
+        result +=
+          `1hr Max Price : ${parseFloat(1 / data.maxDerivedETH).toFixed(
+            2
+          )}/ETH` + "\n";
+        result +=
+          `1hr Min Price : ${parseFloat(1 / data.minDerivedETH).toFixed(
+            2
+          )}/ETH` + "\n";
+      }
       result +=
-        `1hr Min USD Price : USD ${data.minDerivedETH * data.minETHPrice}` +
-        "\n";
+        `1hr Max USD Price : USD ${parseFloat(
+          data.maxDerivedETH * data.maxETHPrice
+        ).toFixed(2)}` + "\n";
+      result +=
+        `1hr Min USD Price : USD ${parseFloat(
+          data.minDerivedETH * data.minETHPrice
+        ).toFixed(2)}` + "\n";
+      let volumnChange = data.endBlockVolumnUSD - data.startBlockVolumnUSD;
+      let volumnChangePercent = (volumnChange / data.startBlockVolumnUSD) * 100;
+      result +=
+        `Volume Change(1hr) : ${parseFloat(volumnChange).toFixed(2)}` + "\n";
+      result +=
+        `Volume Change(1hr) % : ${parseFloat(volumnChangePercent).toFixed(
+          2
+        )}%` + "\n";
     });
     price += "\n" + result;
   } else if (commandArray.length == 3) {

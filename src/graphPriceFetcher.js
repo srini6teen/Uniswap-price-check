@@ -10,6 +10,9 @@ let minDerivedETH = 0;
 let maxDerivedETH = 0;
 let minETHPrice = 0;
 let maxETHPrice = 0;
+let startBlockVolumnUSD = 0;
+let endBlockVolumnUSD = 0;
+let currentTokenPrice = 0;
 
 const getPriceFromGraph = async (tokenTicker) => {
   var today = Math.floor(Date.now() / 1000);
@@ -19,6 +22,9 @@ const getPriceFromGraph = async (tokenTicker) => {
   maxDerivedETH = 0;
   minETHPrice = 0;
   maxETHPrice = 0;
+  startBlockVolumnUSD = 0;
+  endBlockVolumnUSD = 0;
+  currentTokenPrice = 0;
 
   var tokenAddress = tokenDetails[tokenTicker].tokenAddress.toLowerCase();
 
@@ -56,6 +62,9 @@ const getPriceFromGraph = async (tokenTicker) => {
         maxDerivedETH: maxDerivedETH,
         minETHPrice: minETHPrice,
         maxETHPrice: maxETHPrice,
+        startBlockVolumnUSD: startBlockVolumnUSD,
+        endBlockVolumnUSD: endBlockVolumnUSD,
+        currentTokenPrice: currentTokenPrice,
       };
     });
 };
@@ -76,6 +85,7 @@ const getAsyncPrice = async (tokenAddress, BLOCKS_VARIABLES) => {
             if (value.derivedETH) {
               if (minDerivedETH == 0 || value.derivedETH < minDerivedETH) {
                 minDerivedETH = value.derivedETH;
+
                 let minKey = key.replace("t", "b");
                 minETHPrice = response.get(minKey).ethPrice;
               }
@@ -84,6 +94,13 @@ const getAsyncPrice = async (tokenAddress, BLOCKS_VARIABLES) => {
                 let maxKey = key.replace("t", "b");
                 maxETHPrice = response.get(maxKey).ethPrice;
               }
+              currentTokenPrice = value.derivedETH;
+            }
+            if (value.tradeVolumeUSD) {
+              if (startBlockVolumnUSD == 0) {
+                startBlockVolumnUSD = value.tradeVolumeUSD;
+              }
+              endBlockVolumnUSD = value.tradeVolumeUSD;
             }
           }
 

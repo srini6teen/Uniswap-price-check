@@ -33,7 +33,8 @@ const pricesByTokenAddressAndBlockQuery = (tokenAddress, blocks) => {
   queryString += blocks.map(
     (block) => `
         t${block.timestamp}:token(id:"${tokenAddress}", block: { number: ${block.number} }) {
-          derivedETH
+          derivedETH,
+          tradeVolumeUSD
         }
       `
   );
