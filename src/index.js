@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const portfolioRoutes = require("./portfolioRoutes");
 const priceRoutes = require("./priceRoutes");
+const graph = require("./graphPriceFetcher");
 
 const tokenPrice = require("./getTokenPrice");
 const sendPushNotification = require("./sendExpoNotification");
@@ -64,6 +65,20 @@ app.post("/saveNotificationLimit", async (req, res) => {
 
   const { expoToken, notifyCrypro } = req.body;
   sendPushNotification(expoToken);
+});
+
+app.get("/graphQL", (req, res) => {
+  return graph.getPriceFromGraph().then((data) => {
+    let result =
+      `1hr Max Price : ${1 / data.maxDerivedETH}/ETH $Value : ${
+        data.maxDerivedETH * data.maxETHPrice
+      } ; ` + "\n";
+    result +=
+      `1hr Min Price : ${1 / data.minDerivedETH}/ETH $Value : ${
+        data.minDerivedETH * data.minETHPrice
+      } ; ` + "\n";
+    return res.status(200).send(result);
+  });
 });
 
 app.listen(port, () => {
