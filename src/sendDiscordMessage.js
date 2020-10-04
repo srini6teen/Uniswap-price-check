@@ -78,7 +78,8 @@ const getPriceDetails = async (priceCommand) => {
       let volumnChange = data.endBlockVolumnUSD - data.startBlockVolumnUSD;
       let volumnChangePercent = (volumnChange / data.startBlockVolumnUSD) * 100;
       result +=
-        `Volume Change(1hr) : ${parseFloat(volumnChange).toFixed(2)}` + "\n";
+        `Volume Change(1hr) : USD ${parseFloat(volumnChange).toFixed(2)}` +
+        "\n";
       result +=
         `Volume Change(1hr) % : ${parseFloat(volumnChangePercent).toFixed(
           2
