@@ -79,4 +79,5 @@ module.exports = {
   getPriceData,
   getTokens,
   getPrice,
+  tokenDetails,
 };
