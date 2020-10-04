@@ -5,7 +5,7 @@ const path = require("path");
 const tokenPrice = require("./getTokenPrice");
 const jsYaml = require("js-yaml");
 const e = require("express");
-const path = require("path");
+
 const { getPriceFromGraph } = require("./graphPriceFetcher");
 
 const file = fs.readFileSync(path.resolve(__dirname, "../settings.yaml"));
@@ -28,8 +28,8 @@ client.on("message", async (msg) => {
 });
 
 const sendMessageToDiscord = (message) => {
-  message += "--------------------------------";
-  message = "```" + message + "```";
+  // message += "--------------------------------";
+  message = "```" + new Date() + "\n" + message + "```";
   client.channels.cache
     .find((channel) => channel.id === discordSettings.channelId)
     .send(message);
