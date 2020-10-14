@@ -134,7 +134,13 @@
   {
     "name": "ZEFU",
     "ticker": "ZEFU",
-    "tokenAddress": "0xbbbfd95e5b8f1f4bd0694071fb3133be5b5d1ef6",
-    "decimal": 6
+    "tokenAddress": "0xb1e9157c2fdcc5a856c8da8b2d89b6c32b3c1229",
+    "decimal": 18
+  },
+  {
+    "name": "DAOFI",
+    "ticker": "DAOFI",
+    "tokenAddress": "0xd82bb924a1707950903e2c0a619824024e254cd1",
+    "decimal": 18
   }
 ]
