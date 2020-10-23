@@ -36,12 +36,6 @@
     "decimal": 9
   },
   {
-    "name": "ATIS",
-    "ticker": "ATIS",
-    "tokenAddress": "0x821144518dfE9e7b44fCF4d0824e15e8390d4637",
-    "decimal": 18
-  },
-  {
     "name": "CHAIN",
     "ticker": "CHAIN",
     "tokenAddress": "0xC4C2614E694cF534D407Ee49F8E44D125E4681c4",
@@ -148,5 +142,11 @@
     "ticker": "SDX",
     "tokenAddress": "0x041fdd6637eCfD96af8804278AC12660ac2D12c0",
     "decimal": 7
+  },
+  {
+    "name": "DOKI",
+    "ticker": "DOKI",
+    "tokenAddress": "0x9ceb84f92a0561fa3cc4132ab9c0b76a59787544",
+    "decimal": 18
   }
 ]
