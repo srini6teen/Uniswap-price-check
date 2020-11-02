@@ -3,12 +3,14 @@ const tokenAddress = require("../data/address.json");
 const { WETH } = require("@uniswap/sdk");
 
 const tokenDetails = {};
+
 for (let token in tokenAddress) {
   tokenDetails[tokenAddress[token].ticker.toUpperCase()] = tokenAddress[token];
 }
+const keys = Object.keys(tokenDetails).sort();
 
 const getTokens = async () => {
-  return Object.keys(tokenDetails).join(", ");
+  return keys.join(", ");
 };
 
 const getPrice = async (inputTicker, outputTicker) => {
@@ -60,15 +62,15 @@ const getPrice = async (inputTicker, outputTicker) => {
 const getPriceData = async () => {
   let msgText = "";
 
-  for (let index in tokenAddress) {
+  for (const key in keys) {
     let result = "";
 
-    if (tokenAddress[index].ticker.toUpperCase() == "ETH") continue;
+    if (keys[key] == "ETH") continue;
 
-    if (tokenAddress[index].ticker.toLocaleUpperCase() == "HGET") {
-      result = await getPrice(tokenAddress[index].ticker, "USDT");
+    if (keys[key] == "HGET") {
+      result = await getPrice(keys[key], "USDT");
     } else {
-      result = await getPrice("ETH", tokenAddress[index].ticker);
+      result = await getPrice("ETH", keys[key]);
     }
     msgText += result + "\n";
   }
