@@ -154,5 +154,11 @@
     "ticker": "FWT",
     "tokenAddress": "0xf151980e7a781481709e8195744bf2399fb3cba4",
     "decimal": 18
+  },
+  {
+    "name": "AZUKI",
+    "ticker": "AZUKI",
+    "tokenAddress": "0x910524678c0b1b23ffb9285a81f99c29c11cbaed",
+    "decimal": 18
   }
 ]
