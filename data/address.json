@@ -136,5 +136,11 @@
     "ticker": "BOND",
     "tokenAddress": "0x5dc02ea99285e17656b8350722694c35154db1e8",
     "decimal": 8
+  },
+  {
+    "name": "COIN",
+    "ticker": "COIN",
+    "tokenAddress": "0xE61fDAF474Fac07063f2234Fb9e60C1163Cfa850",
+    "decimal": 18
   }
 ]
