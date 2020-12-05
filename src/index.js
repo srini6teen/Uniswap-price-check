@@ -12,6 +12,8 @@ const sendPushNotification = require("./sendExpoNotification");
 const sendTelegramMessage = require("./sendTelegramMessage");
 const sendDiscordMessage = require("./sendDiscordMessage");
 
+const { subscription } = require("./ethereumBlockchain");
+
 const fs = require("fs");
 const e = require("express");
 
@@ -37,6 +39,10 @@ mongoose.connection.on("connected", () => {
 
 mongoose.connection.on("error", (err) => {
   console.log("Error connecting to mongog", err);
+});
+
+subscription.on("data", function (transaction) {
+  console.log(transaction);
 });
 
 const sendTelegramNotification = async () => {
