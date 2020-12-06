@@ -42,12 +42,6 @@
     "decimal": 18
   },
   {
-    "name": "VIDYA",
-    "ticker": "VIDYA",
-    "tokenAddress": "0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30",
-    "decimal": 18
-  },
-  {
     "name": "BID",
     "ticker": "BID",
     "tokenAddress": "0x1dA01e84F3d4e6716F274c987Ae4bEE5DC3C8288",
@@ -69,12 +63,6 @@
     "name": "ORO",
     "ticker": "ORO",
     "tokenAddress": "0xc3eb2622190c57429aac3901808994443b64b466",
-    "decimal": 18
-  },
-  {
-    "name": "XFYI",
-    "ticker": "XFYI",
-    "tokenAddress": "0x6bE7e93e45740C314C89A3bE52473A0dDF2450fe",
     "decimal": 18
   },
   {
@@ -118,12 +106,6 @@
     "ticker": "SDX",
     "tokenAddress": "0x041fdd6637eCfD96af8804278AC12660ac2D12c0",
     "decimal": 7
-  },
-  {
-    "name": "DOKI",
-    "ticker": "DOKI",
-    "tokenAddress": "0x9ceb84f92a0561fa3cc4132ab9c0b76a59787544",
-    "decimal": 18
   },
   {
     "name": "FWT",
