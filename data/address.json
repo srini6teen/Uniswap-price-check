@@ -129,5 +129,11 @@
         "ticker": "YLD",
         "tokenAddress": "0xf94b5c5651c888d928439ab6514b93944eee6f48",
         "decimal": 18
+    },
+    {
+        "name": "VANA",
+        "ticker": "VANA",
+        "tokenAddress": "0x790baf0c914898c62163a61f150637d4bd180697",
+        "decimal": 18
     }
 ]
