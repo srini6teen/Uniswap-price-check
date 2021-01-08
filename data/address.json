@@ -117,5 +117,11 @@
         "ticker": "VANA",
         "tokenAddress": "0x790baf0c914898c62163a61f150637d4bd180697",
         "decimal": 18
+    },
+    {
+        "name": "WISE",
+        "ticker": "WISE",
+        "tokenAddress": "0x66a0f676479Cee1d7373f3DC2e2952778BfF5bd6",
+        "decimal": 18
     }
 ]
