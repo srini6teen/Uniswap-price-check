@@ -123,5 +123,11 @@
         "ticker": "WISE",
         "tokenAddress": "0x66a0f676479Cee1d7373f3DC2e2952778BfF5bd6",
         "decimal": 18
+    },
+    {
+        "name": "GLCH",
+        "ticker": "GLCH",
+        "tokenAddress": "0x038a68ff68c393373ec894015816e33ad41bd564",
+        "decimal": 18
     }
 ]
