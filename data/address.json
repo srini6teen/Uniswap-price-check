@@ -53,12 +53,6 @@
         "decimal": 18
     },
     {
-        "name": "LOCK",
-        "ticker": "LOCK",
-        "tokenAddress": "0xB9464ef80880c5aeA54C7324c0b8Dd6ca6d05A90",
-        "decimal": 18
-    },
-    {
         "name": "ORO",
         "ticker": "ORO",
         "tokenAddress": "0xc3eb2622190c57429aac3901808994443b64b466",
@@ -95,12 +89,6 @@
         "decimal": 18
     },
     {
-        "name": "BOND",
-        "ticker": "BOND",
-        "tokenAddress": "0x5dc02ea99285e17656b8350722694c35154db1e8",
-        "decimal": 8
-    },
-    {
         "name": "COIN",
         "ticker": "COIN",
         "tokenAddress": "0xE61fDAF474Fac07063f2234Fb9e60C1163Cfa850",
@@ -113,9 +101,9 @@
         "decimal": 18
     },
     {
-        "name": "VANA",
-        "ticker": "VANA",
-        "tokenAddress": "0x790baf0c914898c62163a61f150637d4bd180697",
+        "name": "MODEFI",
+        "ticker": "MODEFI",
+        "tokenAddress": "0xea1ea0972fa092dd463f2968f9bb51cc4c981d71",
         "decimal": 18
     },
     {
@@ -128,6 +116,18 @@
         "name": "GLCH",
         "ticker": "GLCH",
         "tokenAddress": "0x038a68ff68c393373ec894015816e33ad41bd564",
+        "decimal": 18
+    },
+    {
+        "name": "SOTA",
+        "ticker": "SOTA",
+        "tokenAddress": "0x0dde6f6e345bfd23f3f419f0dfe04e93143b44fb",
+        "decimal": 18
+    },
+    {
+        "name": "FXF",
+        "ticker": "FXF",
+        "tokenAddress": "0x8a40c222996f9f3431f63bf80244c36822060f12",
         "decimal": 18
     }
 ]
