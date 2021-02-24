@@ -41,7 +41,7 @@ mongoose.connection.on("error", (err) => {
 
 const sendTelegramNotification = async() => {
     const priceDataMessage = await tokenPrice.getPriceData();
-    //sendTelegramMessage.sendMessage(priceDataMessage);
+    sendTelegramMessage.sendMessage(priceDataMessage);
     sendDiscordMessage.sendMessageToDiscord(priceDataMessage);
 };
 
