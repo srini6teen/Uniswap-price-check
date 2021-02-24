@@ -25,62 +25,62 @@ var port = process.env.PORT || 3000;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 const mongoUri =
-  "mongodb+srv://sa:passwordpassword@cluster0.brfri.mongodb.net/Test?retryWrites=true&w=majority";
+    "mongodb+srv://sa:passwordpassword@cluster0.brfri.mongodb.net/Test?retryWrites=true&w=majority";
 mongoose.connect(mongoUri, {
-  useNewUrlParser: true,
-  useCreateIndex: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
 });
 
 mongoose.connection.on("connected", () => {
-  console.log("connected to mongo instance");
+    console.log("connected to mongo instance");
 });
 
 mongoose.connection.on("error", (err) => {
-  console.log("Error connecting to mongog", err);
+    console.log("Error connecting to mongog", err);
 });
 
-const sendTelegramNotification = async () => {
-  const priceDataMessage = await tokenPrice.getPriceData();
-  sendTelegramMessage.sendMessage(priceDataMessage);
-  sendDiscordMessage.sendMessageToDiscord(priceDataMessage);
+const sendTelegramNotification = async() => {
+    const priceDataMessage = await tokenPrice.getPriceData();
+    //sendTelegramMessage.sendMessage(priceDataMessage);
+    sendDiscordMessage.sendMessageToDiscord(priceDataMessage);
 };
 
 app.get("/", (req, res) => {
-  sendTelegramNotification();
-  res.status(200).send("success");
+    sendTelegramNotification();
+    res.status(200).send("success");
 });
 
-app.get("/pair/:fromTicker/:toTicker", async (req, res) => {
-  let result = "";
-  result = await tokenPrice.getPrice(
-    req.params.fromTicker,
-    req.params.toTicker
-  );
-  res.status(200).send(result);
+app.get("/pair/:fromTicker/:toTicker", async(req, res) => {
+    let result = "";
+    result = await tokenPrice.getPrice(
+        req.params.fromTicker,
+        req.params.toTicker
+    );
+    res.status(200).send(result);
 });
 
-app.post("/saveNotificationLimit", async (req, res) => {
-  console.log("Save Called");
-  console.log(req.body);
+app.post("/saveNotificationLimit", async(req, res) => {
+    console.log("Save Called");
+    console.log(req.body);
 
-  const { expoToken, notifyCrypro } = req.body;
-  sendPushNotification(expoToken);
+    const { expoToken, notifyCrypro } = req.body;
+    sendPushNotification(expoToken);
 });
 
 app.get("/graphQL", (req, res) => {
-  return graph.getPriceFromGraph().then((data) => {
-    let result =
-      `1hr Max Price : ${1 / data.maxDerivedETH}/ETH $Value : ${
+    return graph.getPriceFromGraph().then((data) => {
+        let result =
+            `1hr Max Price : ${1 / data.maxDerivedETH}/ETH $Value : ${
         data.maxDerivedETH * data.maxETHPrice
       } ; ` + "\n";
-    result +=
-      `1hr Min Price : ${1 / data.minDerivedETH}/ETH $Value : ${
+        result +=
+            `1hr Min Price : ${1 / data.minDerivedETH}/ETH $Value : ${
         data.minDerivedETH * data.minETHPrice
       } ; ` + "\n";
-    return res.status(200).send(result);
-  });
+        return res.status(200).send(result);
+    });
 });
 
 app.listen(port, () => {
-  console.log("started");
+    console.log("started");
 });
