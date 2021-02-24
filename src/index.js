@@ -46,6 +46,7 @@ const sendTelegramNotification = async() => {
 };
 
 app.get("/", (req, res) => {
+    console.log('Index method called');
     sendTelegramNotification();
     res.status(200).send("success");
 });
