@@ -129,5 +129,11 @@
         "ticker": "FXF",
         "tokenAddress": "0x8a40c222996f9f3431f63bf80244c36822060f12",
         "decimal": 18
+    },
+    {
+        "name": "FCL",
+        "ticker": "FCL",
+        "tokenAddress": "0xf4d861575ecc9493420a3f5a14f85b13f0b50eb3",
+        "decimal": 18
     }
 ]

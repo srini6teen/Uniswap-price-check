@@ -41,13 +41,11 @@ mongoose.connection.on("error", (err) => {
 
 const sendTelegramNotification = async() => {
     const priceDataMessage = await tokenPrice.getPriceData();
-    console.log("index msg" + priceDataMessage);
     sendTelegramMessage.sendMessage(priceDataMessage);
     sendDiscordMessage.sendMessageToDiscord(priceDataMessage);
 };
 
 app.get("/", (req, res) => {
-    console.log('Index method called');
     sendTelegramNotification();
     res.status(200).send("success");
 });
